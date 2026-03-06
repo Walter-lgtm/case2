@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L & ⅂ | Арены: Бензол и Толуол</title>
+    <style>
+        body { background: #0a0f0d; color: #2ecc71; font-family: 'Times New Roman', serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 10px; }
+        .card { background: #111; border: 1px solid #27ae60; padding: 25px; border-radius: 20px; box-shadow: 0 0 30px #2ecc7133; max-width: 850px; width: 95%; text-align: center; margin-bottom: 20px; box-sizing: border-box; }
+        h1 { font-size: 1.6rem; text-shadow: 0 0 15px #2ecc71; margin-bottom: 10px; color: #2ecc71; }
+        .quote { font-style: italic; color: #2ecc71; margin-bottom: 20px; opacity: 0.9; font-size: 0.9rem; }
+        .user-info { margin-bottom: 25px; background: #0d1a12; padding: 15px; border-radius: 10px; border: 1px dashed #27ae60; }
+        .user-info input { background: #000; color: #fff; border: 1px solid #27ae60; padding: 10px; width: 90%; text-align: center; font-size: 1rem; border-radius: 5px; outline: none; }
+        h2 { font-size: 1.1rem; color: #fff; border-bottom: 1px solid #27ae60; padding-bottom: 5px; margin-top: 25px; text-align: left; }
+        .table-wrapper { width: 100%; overflow-x: auto; margin: 15px 0; border: 1px solid #27ae60; border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; background: #000; min-width: 700px; }
+        th, td { border: 1px solid #27ae60; padding: 10px; text-align: center; font-size: 0.85rem; }
+        th { background: #0d1a12; color: #2ecc71; }
+        select { background: #000; color: #2ecc71; border: 1px solid #27ae60; padding: 6px; width: 100%; cursor: pointer; font-family: inherit; }
+        .check-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 15px auto; width: 100%; }
+        .check-item { display: flex; align-items: center; background: #050505; padding: 10px; border: 1px solid #1a1a1a; border-radius: 8px; }
+        input[type="checkbox"] { accent-color: #2ecc71; transform: scale(1.3); margin-right: 12px; }
+        button { background: #27ae60; color: #0a0f0d; border: none; padding: 18px 40px; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: 0.4s; margin-top: 20px; width: 100%; max-width: 300px; }
+        button:hover:not(:disabled) { background: #2ecc71; box-shadow: 0 0 25px #2ecc71; transform: translateY(-2px); }
+        button:disabled { background: #333; color: #666; }
+        #result { margin-top: 25px; font-weight: bold; font-size: 1.2rem; min-height: 60px; color: #fff; text-shadow: 0 0 10px #2ecc71; }
+        .formula-tag { color: #fff; font-weight: bold; background: #1a1a1a; padding: 3px 8px; border-radius: 4px; }
+        sub { font-size: 0.7em; vertical-align: sub; line-height: 0; }
+        .footer { font-size: 0.7rem; color: #444; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>L & ⅂ | Ароматические углеводороды</h1>
+        <p class="quote">«Структура бензольного кольца — гармония шести электронов»</p>
+
+        <div class="user-info">
+            <input type="text" id="student_name" placeholder="Введите Фамилию, Имя, Класс" autocomplete="off">
+        </div>
+
+        <h2>1. Бензол: Строение и физика</h2>
+        <div class="table-wrapper">
+            <table>
+                <tr><th>Формула</th><th>Гибридизация С</th><th>Тип связи</th><th>Растворимость в H₂O</th></tr>
+                <tr>
+                    <td><span class="formula-tag">C<sub>6</sub>H<sub>6</sub></span></td>
+                    <td><select id="q1_1"><option value="0">выбор...</option><option value="w">sp3</option><option value="1">sp2</option><option value="w">sp</option></select></td>
+                    <td><select id="q1_2"><option value="0">выбор...</option><option value="w">Одинарная</option><option value="w">Двойная</option><option value="1">Ароматическая (система)</option></select></td>
+                    <td><select id="q1_3"><option value="0">выбор...</option><option value="w">Хорошая</option><option value="1">Практически нерастворим</option><option value="w">Неограниченная</option></select></td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>2. Толуол: Эффект заместителя</h2>
+        <div class="table-wrapper">
+            <table>
+                <tr><th>Название</th><th>Радикал</th><th>Реакционная способность кольца</th><th>Ориентант (замещение)</th></tr>
+                <tr>
+                    <td><select id="q2_1"><option value="0">выбор...</option><option value="w">Этилбензол</option><option value="1">Метилбензол</option><option value="w">Винилбензол</option></select></td>
+                    <td><select id="q2_2"><option value="0">выбор...</option><option value="w">-OH</option><option value="1">-CH3</option><option value="w">-NO2</option></select></td>
+                    <td><select id="q2_3"><option value="0">выбор...</option><option value="w">Ниже, чем у бензола</option><option value="1">Выше, чем у бензола</option><option value="w">Такая же</option></select></td>
+                    <td><select id="q2_4"><option value="0">выбор...</option><option value="1">Орто- и пара-</option><option value="w">Мета-</option><option value="w">Не ориентирует</option></select></td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>3. Токсикология и безопасность</h2>
+        <div class="table-wrapper">
+            <table>
+                <tr><th>Вещество</th><th>Биологическое действие</th><th>Метаболизм</th><th>Класс опасности</th></tr>
+                <tr>
+                    <td><span class="formula-tag">Бензол</span></td>
+                    <td><select id="q3_1"><option value="0">выбор...</option><option value="w">Витамин</option><option value="1">Канцероген (кровь)</option><option value="w">Безопасен</option></select></td>
+                    <td><select id="q3_2"><option value="0">выбор...</option><option value="w">Легко выводится</option><option value="1">Накапливается (жировая ткань)</option><option value="w">Не всасывается</option></select></td>
+                    <td><select id="q3_3"><option value="0">выбор...</option><option value="w">IV (малоопасный)</option><option value="1">II (высокоопасный)</option><option value="w">V (безопасный)</option></select></td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>4. С чем вступает в реакции ЗАМЕЩЕНИЯ бензол? (S<sub>E</sub>)</h2>
+        <div class="check-grid">
+            <div class="check-item"><input type="checkbox" id="q4_1"> HNO<sub>3</sub> (+H<sub>2</sub>SO<sub>4</sub>)</div>
+            <div class="check-item"><input type="checkbox" id="q4_2"> KMnO<sub>4</sub> (р-р)</div>
+            <div class="check-item"><input type="checkbox" id="q4_3"> Cl<sub>2</sub> (+FeCl<sub>3</sub>)</div>
+            <div class="check-item"><input type="checkbox" id="q4_4"> H<sub>2</sub>O</div>
+            <div class="check-item"><input type="checkbox" id="q4_5"> Br<sub>2</sub> (водный р-р)</div>
+        </div>
+
+        <h2>5. Свойства, отличающие Толуол от Бензола:</h2>
+        <div class="check-grid">
+            <div class="check-item"><input type="checkbox" id="q5_1"> Окисляется KMnO<sub>4</sub></div>
+            <div class="check-item"><input type="checkbox" id="q5_2"> Горит коптящим пламенем</div>
+            <div class="check-item"><input type="checkbox" id="q5_3"> Легче нитруется</div>
+            <div class="check-item"><input type="checkbox" id="q5_4"> Образует ТНТ (тринитротолуол)</div>
+            <div class="check-item"><input type="checkbox" id="q5_5"> Является газом</div>
+        </div>
+
+        <button id="btn" onclick="calculateFinal()">ЗАПУСТИТЬ РЕАКЦИЮ</button>
+        <div id="result"></div>
+        <p class="footer">L & ⅂ Digital Education | Case 2: Aromatics</p>
+    </div>
+
+    <script>
+        const GOOGLE_URL = "https://script.google.com";
+
+        async function calculateFinal() {
+            const name = document.getElementById('student_name').value.trim();
+            if (!name) { alert("Представьтесь, смертный!"); return; }
+
+            document.getElementById('btn').disabled = true;
+            document.getElementById('btn').innerText = "СИНХРОНИЗАЦИЯ...";
+
+            let score = 0;
+            // 1. Бензол (3 селекта)
+            if (['q1_1','q1_2','q1_3'].every(id => document.getElementById(id).value == "1")) score++;
+            // 2. Толуол (4 селекта)
+            if (['q2_1','q2_2','q2_3','q2_4'].every(id => document.getElementById(id).value == "1")) score++;
+            // 3. Токсичность (3 селекта)
+            if (['q3_1','q3_2','q3_3'].every(id => document.getElementById(id).value == "1")) score++;
+            
+            // 4. Замещение бензола (Верно: 1, 3. Неверно: 2, 4, 5)
+            let q4 = document.getElementById('q4_1').checked && document.getElementById('q4_3').checked && 
+                     !['q4_2','q4_4','q4_5'].some(id => document.getElementById(id).checked);
+            if (q4) score++;
+
+            // 5. Отличия толуола (Верно: 1, 3, 4. Неверно: 2-общее, 5-ложь)
+            let q5 = document.getElementById('q5_1').checked && document.getElementById('q5_3').checked && document.getElementById('q5_4').checked &&
+                     !['q5_2','q5_3','q5_5'].some(id => document.getElementById(id).checked === true && (id === 'q5_2' || id === 'q5_5'));
+            if (q5) score++;
+
+            let rank = score >= 4 ? "Мастер-химик" : score === 3 ? "Лаборант" : "Новичок";
+            
+            try {
+                await fetch(GOOGLE_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name: name, score: score, rank: rank })
+                });
+                document.getElementById('result').innerHTML = `ТОЧНОСТЬ: ${score} из 5<br>ДАННЫЕ ОТПРАВЛЕНЫ В ГИМНАЗИЮ №1.`;
+            } catch (e) {
+                document.getElementById('result').innerHTML = `ОШИБКА РЕЗОНАНСА. Но твой балл: ${score}`;
+            }
+            document.getElementById('btn').innerText = "РЕАКЦИЯ ЗАВЕРШЕНА";
+        }
+    </script>
+</body>
+</html>

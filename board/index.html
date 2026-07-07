@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Доска учителя химии</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background: #f0f2f5; }
+        .toolbar { padding: 10px; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        button { margin-right: 10px; padding: 8px 16px; cursor: pointer; }
+        #canvas-container {
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin: 20px;
+            border-radius: 8px;
+        }
+        canvas {
+            display: block;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body>
+
+<div class="toolbar">
+    <button onclick="setTool('draw')">✏️ Карандаш</button>
+    <button onclick="setTool('text')">🔤 Текст</button>
+    <button onclick="setTool('erase')">🧽 Ластик</button>
+    <button onclick="clearBoard()">🗑️ Очистить</button>
+    <span style="float: right; color: #555;">Инструмент: <b id="current-tool">Карандаш</b></span>
+</div>
+
+<div id="canvas-container">
+    <!-- Сюда позже можно добавить кнопку "Вставить формулу" -->
+    <canvas id="chem-board"></canvas>
+</div>
+
+<script>
+    const canvas = document.getElementById('chem-board');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let lastX = 0, lastY = 0;
+    let tool = 'draw';
+    
+    // Настройка размера канваса под экран (но не растягиваем CSS'ом)
+    canvas.width = window.innerWidth - 40;
+    canvas.height = window.innerHeight - 120;
+
+    function setTool(newTool) {
+        tool = newTool;
+        document.getElementById('current-tool').innerText = 
+            newTool === 'draw' ? 'Карандаш' : 
+            newTool === 'text' ? 'Текст' : 'Ластик';
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+    }
+
+    function startPosition(e) {
+        isDrawing = true;
+        [lastX, lastY] = [e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop];
+        
+        // Если ластик - меняем цвет на цвет фона
+        if (tool === 'erase') {
+            ctx.strokeStyle = '#ffffff'; // Цвет фона доски
+            ctx.lineWidth = 15;
+        } else {
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 3;
+        }
+    }
+
+    function draw(e) {
+        if (!isDrawing) return;
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+        ctx.stroke();
+        [lastX, lastY] = [e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop];
+    }
+
+    canvas.addEventListener('mousedown', startPosition);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', () => isDrawing = false);
+    canvas.addEventListener('mouseout', () => isDrawing = false);
+
+    function clearBoard() {
+        if(confirm('Очистить всю доску?')) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    }
+</script>
+</body>
+</html>
